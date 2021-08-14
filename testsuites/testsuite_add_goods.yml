@@ -1,0 +1,100 @@
+config:
+    name: 用例集-添加商品
+
+testcases:
+-
+    name: 1.添加商品-goodsname参数校验
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-code-msg:
+        - ["", "${goods_code()}", 3003, 参数不合法]
+        - ["aaaaaaaaaabbbbbbbbbbcccccccccc1", "${goods_code()}", 3003, 参数不合法]
+        - ["yoyo123", "${goods_code()}", 0, success!]
+
+-
+    name: 2.添加商品-goodscode参数校验
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-code-msg:
+        - ["yoyo123", "", 2000, 缺少必填项goodscode]
+        - ["yoyo123", "yoyo123", 3003, 参数不合法]
+        - ["yoyo123", "yoyo123xx", 3003, 参数不合法]
+        - ["yoyo123", "sp_10086", 4000, goodscode不能重复添加]
+        - ["yoyo123", "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq", 3003, 参数不合法]
+
+-
+    name: 2.添加商品-goodscode参数校验
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-code-msg:
+        - ["yoyo123", "", 2000, 缺少必填项goodscode]
+        - ["yoyo123", "yoyo123", 3003, 参数不合法]
+        - ["yoyo123", "yoyo123xx", 3003, 参数不合法]
+        - ["yoyo123", "sp_10086", 4000, goodscode不能重复添加]
+        - ["yoyo123", "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq", 3003, 参数不合法]
+
+-
+    name: 3.添加商品-merchantid参数校验
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-merchantid-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 0, success!]
+        - ["yoyo123", "${goods_code()}", "123456", 0, success!]
+        - ["yoyo123", "${goods_code()}", "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq222" , 3003, 参数不合法]
+
+-
+    name: 4.添加商品-merchantname参数
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-merchantname-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 0, success!]
+        - ["yoyo123", "${goods_code()}", "123456", 0, success!]
+        - ["yoyo123", "${goods_code()}", "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq2222", 3003, 参数不合法]
+
+-
+    name: 5.添加商品-goodsprice参数
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-goodsprice-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 0, success!]
+        - ["yoyo123", "${goods_code()}", "", 3003, 参数不合法]
+        - ["yoyo123", "${goods_code()}", 19, 0, success!]
+        - ["yoyo123", "${goods_code()}", 19.10, 0, success!]
+        - ["yoyo123", "${goods_code()}", 19.1011, 0, success!]
+
+-
+    name: 6.添加商品-stock参数
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-stock-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 0, success!]
+        - ["yoyo123", "${goods_code()}", 0, 0, success!]
+        - ["yoyo123", "${goods_code()}", 100, 0, success!]
+
+-
+    name: 7.添加商品-goodsgroupid参数
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-goodsgroupid-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 0, success!]
+        - ["yoyo123", "${goods_code()}", 100111, 0, success!]
+
+-
+    name: 8.添加商品-price参数
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-price-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 0, success!]
+        - ["yoyo123", "${goods_code()}", 21, 0, success!]
+        - ["yoyo123", "${goods_code()}", 21.99 , 0, success!]
+
+-
+    name: 9.添加商品-goodsstatus参数
+    testcase: testcases/test_add_goods.yml
+    parameters:
+        goodsname-goodscode-goodsstatus-code-msg:
+        - ["yoyo123", "${goods_code()}", null, 3003, 参数不合法]
+        - ["yoyo123", "${goods_code()}", 0 , 0, success!]
+        - ["yoyo123", "${goods_code()}", 1 , 0, success!]
+        - ["yoyo123", "${goods_code()}", 3 , 3003, 参数不合法]
+

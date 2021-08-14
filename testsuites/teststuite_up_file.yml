@@ -1,0 +1,19 @@
+config:
+    name: 用例集-文件上传
+
+testcases:
+-
+    name: 1.文件上传-上传png和jpg格式图片，上传成功
+    testcase: testcases/test_up_file.yml
+    parameters:
+        filename-titlename-code-msg:
+        - [data/hrun.png, 上海-悠悠, 0, success!]
+        - [data/hrun.jpg, 上海-悠悠, 0, success!]
+
+-
+    name: 2.文件上传-上传图片为空或title为空
+    testcase: testcases/test_up_file.yml
+    parameters:
+        filename-titlename-code-msg:
+        - [data/hrun.jpg, "", 400, "bad request"]
+        - ["", 上海-悠悠, 400, "bad request"]

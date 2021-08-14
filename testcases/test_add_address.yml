@@ -1,0 +1,28 @@
+config:
+    name: 添加收获地址
+    output:
+        - token
+
+teststeps:
+-
+    name: 测试步骤：login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+-
+    name: 添加收获地址
+    api: api/add_address.yml
+    variables:
+        tel: 15001234001
+        name: 上海-悠悠
+        address: 上海市徐汇区xx路1001号
+        postal: 200000
+        code: 0
+        msg: success!
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]

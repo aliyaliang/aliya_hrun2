@@ -1,0 +1,20 @@
+config:
+    name: 注册用例-重复注册
+
+teststeps:
+-
+    name: 注册
+    api: api/register.yml
+    variables:
+       user: test123
+       psw: 123456
+
+-
+    name: 重复注册
+    api: api/register.yml
+    variables:
+        user: test123
+        psw: 123456
+    validate:
+        - eq: [content.code, 2000]
+        - contains: [content.msg, 用户已被注册]

@@ -1,0 +1,9 @@
+{
+    "api":[
+        "api\\add_goods.yml",
+        "api\\get_address.yml",
+        "api\\put_goods.yml",
+        "api\\carts\\add_carts.yml",
+        "api\\carts\\get_carts.yml"
+    ]
+}

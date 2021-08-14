@@ -1,0 +1,14 @@
+config:
+    name: 登录接口-输入一个已注册过的账号，密码错误，登录失败
+
+teststeps:
+-
+    name: login step
+    api: api/login.yml
+    variables:
+        user: test1
+        psw: xxxxx
+    validate:
+        - eq: [content.code, 3003]
+        - eq: [content.msg, 账号或密码不正确]
+        - len_eq: [content.token, 0]

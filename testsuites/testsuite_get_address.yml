@@ -1,0 +1,7 @@
+config:
+    name: 用例集-查询收获地址
+
+testcases:
+-
+    name: 1.查询收获地址，查询成功
+    testcase: testcases/test_get_address.yml

@@ -1,0 +1,108 @@
+config:
+    name: 用例集-修改商品信息
+
+testcases:
+-
+    name: 1.修改商品-sp_id参数校验
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        sp_id-goodscode-code-msg:
+        - [1, sp_test1, 0, success!]
+        - [123456, sp_test1, 1000, no goods]
+
+-
+    name: 1-2.修改商品-sp_id不合法404
+    testcase: testcases/test_put_goods_404.yml
+    parameters:
+        sp_id-goodscode:
+        - [null, sp_test1]
+        - [abc, sp_test1]
+        - ["", sp_test1]
+
+-
+    name: 2.修改商品-goodsname参数校验
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-code-msg:
+        - ["", sp_test1, 3003, 参数不合法]
+        - ["aaaaaaaaaabbbbbbbbbbcccccccccc1", sp_test1, 3003, 参数不合法]
+        - ["yoyo123", sp_test1, 0, success!]
+
+-
+    name: 3.修改商品-goodscode参数校验
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-code-msg:
+        - ["yoyo123", "", 3003, 参数不合法]
+        - ["yoyo123", "yoyo123", 3003, 参数不合法]
+        - ["yoyo123", "yoyo123xx", 3003, 参数不合法]
+        - ["yoyo123", "sp_10086", 3003, 参数不合法]
+        - ["yoyo123", "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq", 3003, 参数不合法]
+        - ["yoyo123", sp_test1, 0, success!]
+
+
+-
+    name: 4.修改商品-merchantid参数校验
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-merchantid-code-msg:
+        - ["yoyo123", sp_test1, null, 0, success!]
+        - ["yoyo123", sp_test1, "123456", 0, success!]
+        - ["yoyo123", sp_test1, "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq222" , 3003, 参数不合法]
+
+-
+    name: 5.修改商品-merchantname参数
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-merchantname-code-msg:
+        - ["yoyo123", sp_test1, null, 0, success!]
+        - ["yoyo123", sp_test1, "123456", 0, success!]
+        - ["yoyo123", sp_test1, "sp1aaaaaaaaabbbbbbbbbxxxxxxxxq2222", 3003, 参数不合法]
+
+-
+    name: 6.修改商品-goodsprice参数
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-goodsprice-code-msg:
+        - ["yoyo123", sp_test1, null, 0, success!]
+        - ["yoyo123", sp_test1, "", 3003, 参数不合法]
+        - ["yoyo123", sp_test1, 19, 0, success!]
+        - ["yoyo123", sp_test1, 19.10, 0, success!]
+        - ["yoyo123", sp_test1, 19.1011, 0, success!]
+
+-
+    name: 7.修改商品-stock参数
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-stock-code-msg:
+        - ["yoyo123", sp_test1, null, 0, success!]
+        - ["yoyo123", sp_test1, 0, 0, success!]
+        - ["yoyo123", sp_test1, 100, 0, success!]
+
+-
+    name: 8.修改商品-goodsgroupid参数
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-goodsgroupid-code-msg:
+        - ["yoyo123", sp_test1, null, 0, success!]
+        - ["yoyo123", sp_test1, 100111, 0, success!]
+
+-
+    name: 9.修改商品-price参数
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-price-code-msg:
+        - ["yoyo123", sp_test1, null, 0, success!]
+        - ["yoyo123", sp_test1, 21, 0, success!]
+        - ["yoyo123", sp_test1, 21.99 , 0, success!]
+
+-
+    name: 10.修改商品-price参数
+    testcase: testcases/test_put_goods.yml
+    parameters:
+        goodsname-goodscode-goodsstatus-code-msg:
+        - ["yoyo123", sp_test1, null, 3003, 参数不合法]
+        - ["yoyo123", sp_test1, 0 , 0, success!]
+        - ["yoyo123", sp_test1, 1 , 0, success!]
+        - ["yoyo123", sp_test1, 3 , 3003, 参数不合法]
+

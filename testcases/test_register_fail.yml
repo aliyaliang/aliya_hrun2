@@ -1,0 +1,14 @@
+config:
+    name: 注册用例
+
+teststeps:
+-
+    name: 注册失败-参数不合法
+    api: api/register.yml
+    variables:
+        user: t
+        psw: 123456
+        email: ""
+    validate:
+        - eq: [content.code, 3003]
+        - eq: [content.msg, 参数不合法]

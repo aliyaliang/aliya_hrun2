@@ -1,0 +1,50 @@
+config:
+    name: 用例集-添加收获地址
+
+testcases:
+-
+    name: 1.收获地址-tel 参数校验
+    testcase: testcases/test_add_address.yml
+    parameters:
+        tel-code-msg:
+        - [null, 0, success!]
+        - ["", 0, success!]
+        - [1234567, 0, success!]
+        - [15001234001, 0, success!]
+        - [testabc, 0, success!]
+        - [abc1500123400112333333332222222222122, 3003, 参数不合法]
+
+-
+    name: 2.收件人姓名-name 参数校验
+    testcase: testcases/test_add_address.yml
+    parameters:
+        name-code-msg:
+        - [null, 0, success!]
+        - ["", 0, success!]
+        - [12345, 0, success!]
+        - [testabc, 0, success!]
+        - [abc1500123400112333333332222222222122, 3003, 参数不合法]
+
+-
+    name: 3.收获地址-address 参数校验
+    testcase: testcases/test_add_address.yml
+    parameters:
+        address-code-msg:
+        - [null, 0, success!]
+        - ["", 0, success!]
+        - [12345, 0, success!]
+        - [上海市徐汇区xx 路 1001 号101, 0, success!]
+
+-
+    name: 4.收获地址-postal 参数校验
+    testcase: testcases/test_add_address.yml
+    parameters:
+        postal-code-msg:
+        - [null, 0, success!]
+        - ["", 0, success!]
+        - [20000, 0, success!]
+        - [abc1500123400112333333332222222222122, 3003, 参数不合法]
+
+
+
+

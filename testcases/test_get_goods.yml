@@ -1,0 +1,38 @@
+config:
+    name: 查询商品用例
+    output:
+        - token
+        - sp_id
+
+teststeps:
+-
+    name: step1-login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+-
+    name: step2-add goods
+    api: api/add_goods.yml
+    variables:
+        goodsname: yoyo
+        goodscode: ${goods_code()}
+    extract:
+        sp_id: content.data.id
+    validate:
+    - eq: [content.code, 0]
+    - eq: [content.msg, success!]
+
+-
+    name: step3-get goods
+    api: api/get_goods.yml
+    variables:
+        sp_id: $sp_id
+        code: 0
+        msg: success!
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]

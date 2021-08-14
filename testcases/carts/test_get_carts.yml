@@ -1,0 +1,51 @@
+config:
+    name: 添加购物车后-查询购物车
+    output:
+        - token
+        - goods_code
+
+teststeps:
+-
+    name: 1.login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+-
+    name: 2.添加商品
+    api: api/add_goods.yml
+    variables:
+        goodsname: yoyo
+        goodscode: ${goods_code()}
+        merchantid: "10001"
+        merchantname: "悠悠学堂"
+        goodsprice: 99.9
+        stock: 100
+        goodsgroupid: 0
+        goodsstatus: 1
+        price: 21.0
+    extract:
+        goods_code: content.data.goodscode
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, success!]
+
+-
+    name: 3.添加购物车
+    api: api/carts/add_carts.yml
+    variables:
+        goods_code: $goods_code
+        goods_num: 1
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, success!]
+
+-
+    name: 4.查询购物车
+    api: api/carts/get_carts.yml
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, success!]

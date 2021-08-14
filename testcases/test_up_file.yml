@@ -1,0 +1,15 @@
+config:
+    name: 文件上传
+
+teststeps:
+-
+    name: 文件上传
+    api: api/upload.yml
+    variables:
+        filename: data/hrun.png
+        titlename: 上海-悠悠
+        code: 0
+        msg: success!
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]

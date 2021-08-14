@@ -1,0 +1,15 @@
+config:
+    name: 登录接口-输入正确账号,正确密码，登录成功
+    output:
+        - token
+
+teststeps:
+-
+    name: 测试步骤：login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]

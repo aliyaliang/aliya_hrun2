@@ -1,0 +1,13 @@
+name: 删除商品
+base_url: ${ENV(base_url)}
+variables:
+    sp_id: 1
+    token: ""
+request:
+    url: /api/v2/goods/$sp_id
+    method: DELETE
+    headers:
+        Authorization: Token $token
+validate:
+    - eq: [status_code, 200]
+    - eq: [headers.Content-Type, application/json]

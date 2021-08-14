@@ -1,0 +1,27 @@
+config:
+    name: 添加购物车-goodscode不存在场景
+    output:
+        - token
+
+teststeps:
+-
+    name: 测试步骤：login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+
+-
+    name: 添加购物车
+    api: api/carts/add_carts.yml
+    variables:
+        goods_code: 222222
+        goods_num: 1
+        code: 5000
+        msg: "goodscode 不存在"
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]

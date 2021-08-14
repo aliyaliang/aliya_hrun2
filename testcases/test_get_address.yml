@@ -1,0 +1,46 @@
+config:
+    name: 查询收获地址
+    output:
+        - token
+
+teststeps:
+-
+    name: step1-login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+-
+    name: step2-add address
+    api: api/add_address.yml
+    variables:
+        tel: 15001234001
+        name: 上海-悠悠
+        address: 上海市徐汇区xx路1001号
+        postal: 200000
+        code: 0
+        msg: success!
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]
+
+-
+    name: step3-get address
+    api: api/get_address.yml
+    variables:
+        tel: "15001234001"
+        name: 上海-悠悠
+        address: 上海市徐汇区xx路1001号
+        postal: "200000"
+        code: 0
+        msg: success!
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]
+        - eq: [content.data.tel, $tel]
+        - eq: [content.data.name, $name]
+        - eq: [content.data.address, $address]
+        - eq: [content.data.postal, $postal]

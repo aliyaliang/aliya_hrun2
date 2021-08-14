@@ -1,0 +1,18 @@
+name: 添加购物车
+base_url: ${ENV(base_url)}
+variables:
+    goods_code: "sp_100008"
+    goods_num: 1
+
+request:
+    url: /api/v2/carts
+    method: POST
+    headers:
+        Authorization: Token $token
+    json:
+        goodscode: $goods_code
+        goodsnum: $goods_num
+
+validate:
+    - eq: [status_code, 200]
+    - eq: [headers.Content-Type, application/json]

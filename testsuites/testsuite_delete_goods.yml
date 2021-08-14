@@ -1,0 +1,15 @@
+config:
+    name: 用例集-删除商品
+
+testcases:
+-
+    name: 1.删除商品id存在用例-成功
+    testcase: testcases/test_delete_goods.yml
+
+-
+    name: 2.删除商品用例-不存在商品
+    testcase: testcases/test_delete_goods_null.yml
+    variables:
+        sp_id: 123456
+        code: 1000
+        msg: 无数据删除

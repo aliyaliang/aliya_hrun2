@@ -1,0 +1,26 @@
+config:
+    name: 查询商品id不存在
+    output:
+        - token
+
+teststeps:
+-
+    name: step1-login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+
+-
+    name: step2-get goods
+    api: api/get_goods.yml
+    variables:
+        sp_id: 22222
+        code: 1000
+        msg: no info
+    validate:
+        - eq: [content.code, $code]
+        - eq: [content.msg, $msg]

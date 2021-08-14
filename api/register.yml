@@ -1,0 +1,16 @@
+name: 注册接口
+base_url: ${ENV(base_url)}
+variables:
+    user: test1
+    psw: "123456"
+    email: ""
+request:
+    method: POST
+    json:
+        username: $user
+        password: $psw
+        email: $email
+    url: /api/v1/register
+validate:
+    - eq: [status_code, 200]
+    - eq: [headers.Content-Type, application/json]

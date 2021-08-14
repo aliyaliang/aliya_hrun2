@@ -1,0 +1,28 @@
+config:
+    name: 用例集-添加购物车
+
+testcases:
+-
+    name: 1.添加购物车-goodscode存在
+    testcase: testcases/carts/test_add_carts.yml
+-
+    name: 2.添加购物车-goodsnum参数校验
+    testcase: testcases/carts/test_add_carts.yml
+    parameters:
+        goods_num-code-msg:
+        - [0, 0, success!]
+        - [1, 0, success!]
+        - [100, 0, success!]
+        - [-1, 3003, 参数不合法]
+
+-
+    name: 3.添加购物车-goodscode不存在
+    testcase: testcases/carts/test_add_carts_null.yml
+    parameters:
+        goods_code-goods_num-code-msg:
+        - [null, 1, 3003, 参数不合法]
+        - ["", 1, 3003, 参数不合法]
+        - ["22222", 1, 5000, "goodscode 不存在"]
+        - ["sp_testx1zz", 1, 5000, "goodscode 不存在"]
+
+

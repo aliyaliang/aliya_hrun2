@@ -1,0 +1,35 @@
+config:
+    name: 更新商品信息
+    output:
+        - token
+
+teststeps:
+-
+    name: 测试步骤：login
+    api: api/login.yml
+    extract:
+        token: content.token
+    validate:
+        - eq: [content.code, 0]
+        - eq: [content.msg, login success!]
+        - len_eq: [content.token, 40]
+-
+    name: 更新商品信息
+    api: api/put_goods.yml
+    variables:
+        sp_id: abc
+        goodsname: yoyo
+        goodscode: sp_test1
+        merchantid: "10001"
+        merchantname: "悠悠学堂"
+        goodsprice: 99.9
+        stock: 100
+        goodsgroupid: 0
+        goodsstatus: 1
+        price: 21.0
+        code: 0
+        msg: success!
+    validate:
+        - eq: [status_code, 200]
+        - eq: [headers.Content-Type, text/html; charset=utf-8]
+        - contains: [text, 404 not found]

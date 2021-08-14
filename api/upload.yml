@@ -1,0 +1,11 @@
+name: 文件上传
+base_url: ${ENV(base_url)}
+variables:
+    filename: data/hrun.png
+    titlename: 上海-悠悠
+request:
+    url: /api/v1/upfile/
+    method: POST
+    upload:
+        file: $filename
+        title: $titlename

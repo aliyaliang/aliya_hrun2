@@ -1,0 +1,2 @@
+requests==2.22.0
+httprunner==2.5.7

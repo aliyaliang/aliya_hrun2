@@ -1,0 +1,7 @@
+config:
+    name: 用例集-查询购物车
+
+testcases:
+-
+    name: 1.查询购物车
+    testcase: testcases/carts/test_get_carts.yml

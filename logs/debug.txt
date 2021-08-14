@@ -1,0 +1,42 @@
+[32m[47mINFO    [0m [32mHttpRunner version: 2.5.7[0m
+[32m[47mINFO    [0m [32mLoading environment variables from D:\wangyiyun_hrun2\yoyo_hrun2\.env[0m
+[36m[47mDEBUG   [0m [36mSet OS environment variable: base_url[0m
+[36m[47mDEBUG   [0m [36mSet OS environment variable: username[0m
+[36m[47mDEBUG   [0m [36mSet OS environment variable: password[0m
+[32m[47mINFO    [0m [32mStart to run testcase: 用户账户登录[0m
+[32m[47mINFO    [0m [32mPOST http://49.235.92.12:8201/api/v1/login[0m
+[36m[47mDEBUG   [0m [36mrequest kwargs(raw): {'json': {'username': 'test1', 'password': '123456'}, 'verify': True}[0m
+[36m[47mDEBUG   [0m [36mprocessed request:
+> POST http://49.235.92.12:8201/api/v1/login
+> kwargs: {'json': {'username': 'test1', 'password': '123456'}, 'verify': True, 'timeout': 120}[0m
+[36m[47mDEBUG   [0m [36m
+================== request details ==================
+url              : 'http://49.235.92.12:8201/api/v1/login'
+method           : 'POST'
+headers          : {'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '43', 'Content-Type': 'application/json'}
+body             : b'{"username": "test1", "password": "123456"}'
+[0m
+[36m[47mDEBUG   [0m [36m
+================== response details ==================
+ok               : True
+url              : 'http://49.235.92.12:8201/api/v1/login'
+status_code      : 200
+reason           : 'OK'
+cookies          : {}
+encoding         : None
+headers          : {'Date': 'Tue, 08 Jun 2021 03:07:43 GMT', 'Server': 'WSGIServer/0.2 CPython/3.6.8', 'Content-Type': 'application/json', 'Vary': 'Accept, Cookie', 'Allow': 'POST, OPTIONS', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Length': '110'}
+content_type     : 'application/json'
+body             : {'code': 0, 'msg': 'login success!', 'username': 'test1', 'token': '40f5dd8f3183d64648e5c3c4b6ec62c2de7e885f'}
+[0m
+[32m[47mINFO    [0m [32mstatus_code: 200, response_time(ms): 167.58 ms, response_length: 110 bytes
+[0m
+[36m[47mDEBUG   [0m [36mstart to validate.[0m
+[36m[47mDEBUG   [0m [36mextract: status_code	=> 200[0m
+[36m[47mDEBUG   [0m [36m
+validate: status_code equals 200(int)	==> pass[0m
+[36m[47mDEBUG   [0m [36mextract: headers.Content-Type	=> application/json[0m
+[36m[47mDEBUG   [0m [36m
+validate: headers.Content-Type equals application/json(str)	==> pass[0m
+[36m[47mDEBUG   [0m [36mNo html report template specified, use default.[0m
+[32m[47mINFO    [0m [32mStart to render Html report ...[0m
+[32m[47mINFO    [0m [32mGenerated Html report: D:\wangyiyun_hrun2\yoyo_hrun2\reports\20210607T140736.125034.html[0m
